@@ -1,12 +1,19 @@
-<script>
-    import { page } from "$app/stores";
-    import ProductHeader from "../ProductHeader.svelte";
+<script lang="ts">
+    import type { PageData } from "./$types";
 
-    $: console.log(page);
+    export let data: PageData
+
+    $:product = data.product;
 </script>
 
-<ProductHeader />
+<img src={product.thumbnail} alt="{product.title}">
 
-<p> Product ID: {$page.params.id}</p>
+<h1>{product?.title}</h1>
 
-<h1>Product Page</h1>
+<p>{product.description}</p>
+
+<style>
+	img {
+		width: 100%;
+	}
+</style>
